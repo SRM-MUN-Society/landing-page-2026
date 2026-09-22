@@ -1,29 +1,40 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { hydrateIllustrations } from '@/lib/illustrations';
 import { initMagnetic } from '@/lib/motion';
 
 export default function ContactSection() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
     if (!rootRef.current) return;
     hydrateIllustrations(rootRef.current);
     initMagnetic(rootRef.current);
+    
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
-    <div ref={rootRef} className="contact-page" style={{ paddingTop: '140px', paddingBottom: '4rem', minHeight: '100vh' }}>
-      <div className="shell">
+    <div ref={rootRef} className="contact-page" style={{ paddingTop: isMobile ? '100px' : '140px', paddingBottom: '4rem', minHeight: '100vh' }}>
+      <div className="shell" style={{ padding: isMobile ? '0 1rem' : undefined }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           {/* Header */}
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <p className="eyebrow" style={{ color: 'var(--g-400)', marginBottom: '1rem' }}>Get in Touch</p>
-            <h1 className="display display--lg" style={{ color: '#fff', marginBottom: '1.5rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '4rem' }}>
+            <p className="eyebrow" style={{ color: 'var(--g-400)', marginBottom: '1rem', fontSize: isMobile ? '0.7rem' : undefined }}>Get in Touch</p>
+            <h1 className="display display--lg" style={{ color: '#fff', marginBottom: '1.5rem', fontSize: isMobile ? 'clamp(2rem, 8vw, 3.5rem)' : undefined }}>
               Contact Us
             </h1>
-            <p className="lede" style={{ color: 'var(--g-200)', maxWidth: '600px', margin: '0 auto' }}>
+            <p className="lede" style={{ color: 'var(--g-200)', maxWidth: '600px', margin: '0 auto', fontSize: isMobile ? '0.95rem' : undefined }}>
               Reach out to the Secretariat of SRM MUN 2026. We're here to help with any questions about 
               registration, committees, or the conference.
             </p>
@@ -32,9 +43,9 @@ export default function ContactSection() {
           {/* Secretariat Cards */}
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '2rem',
-            marginBottom: '4rem'
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: isMobile ? '1.5rem' : '2rem',
+            marginBottom: isMobile ? '3rem' : '4rem'
           }}>
             {/* Secretary General */}
             <div style={{
@@ -176,23 +187,23 @@ export default function ContactSection() {
             background: 'rgba(255, 255, 255, 0.05)',
             border: '1px solid rgba(255, 255, 255, 0.1)',
             borderRadius: '16px',
-            padding: '2.5rem',
+            padding: isMobile ? '1.5rem' : '2.5rem',
             backdropFilter: 'blur(10px)',
-            marginBottom: '3rem',
+            marginBottom: isMobile ? '2rem' : '3rem',
           }}>
             <h2 style={{ 
-              fontSize: '1.75rem', 
+              fontSize: isMobile ? '1.5rem' : '1.75rem', 
               fontWeight: 700, 
               color: '#fff',
-              marginBottom: '2rem',
+              marginBottom: isMobile ? '1.5rem' : '2rem',
               textAlign: 'center'
             }}>
               Email Us
             </h2>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-              gap: '2rem',
+              gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: isMobile ? '1.5rem' : '2rem',
             }}>
               {/* Delegation Email */}
               <div>

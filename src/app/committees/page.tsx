@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function CommitteesPage() {
   return (
     <DarkPageWrapper>
-      <main id="main" className="is-invert" style={{ paddingTop: '120px', minHeight: '100vh', backgroundColor: '#0a0a0a' }}>
+      <main id="main" className="is-invert" style={{ paddingTop: '100px', minHeight: '100vh', backgroundColor: '#0a0a0a' }}>
         <section>
           <CommitteesCarousel />
         </section>

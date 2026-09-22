@@ -19,10 +19,19 @@ const ChevronRight = () => (
 export function CommitteesCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isClient, setIsClient] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const touchStartX = useRef(0);
 
   useEffect(() => {
     setIsClient(true);
+    setIsMobile(window.innerWidth < 768);
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const nextSlide = useCallback(() => {
@@ -65,18 +74,24 @@ export function CommitteesCarousel() {
 
   if (!isClient) return null;
 
+  // Mobile-specific dimensions
+  const cardWidth = isMobile ? 280 : 320;
+  const cardHeight = isMobile ? 420 : 480;
+  const containerMinHeight = isMobile ? "600px" : "700px";
+  const containerPadding = isMobile ? "40px 10px" : "60px 20px";
+
   return (
     <div
       style={{
         position: "relative",
         width: "100%",
-        minHeight: "700px",
+        minHeight: containerMinHeight,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#0a0a0a",
         overflow: "hidden",
-        padding: "60px 20px",
+        padding: containerPadding,
       }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
@@ -125,12 +140,12 @@ export function CommitteesCarousel() {
         <div
           style={{
             position: "relative",
-            height: "500px",
+            height: isMobile ? "450px" : "500px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            perspective: "1200px",
-            marginBottom: "40px",
+            perspective: isMobile ? "800px" : "1200px",
+            marginBottom: isMobile ? "30px" : "40px",
           }}
         >
           {committees.map((committee, idx) => {
@@ -141,36 +156,47 @@ export function CommitteesCarousel() {
             let zIndex = 0;
             let pointerEvents: "auto" | "none" = "none";
 
-            if (offset === 0) {
-              // Center
-              transform = "translateX(0) scale(1) rotateY(0deg)";
-              opacity = 1;
-              zIndex = 30;
-              pointerEvents = "auto";
-            } else if (offset === 1) {
-              // Right 1
-              transform = "translateX(280px) scale(0.85) rotateY(-25deg)";
-              opacity = 0.7;
-              zIndex = 20;
-              pointerEvents = "auto";
-            } else if (offset === 2) {
-              // Right 2
-              transform = "translateX(480px) scale(0.7) rotateY(-35deg)";
-              opacity = 0.4;
-              zIndex = 10;
-              pointerEvents = "auto";
-            } else if (offset === committees.length - 1) {
-              // Left 1
-              transform = "translateX(-280px) scale(0.85) rotateY(25deg)";
-              opacity = 0.7;
-              zIndex = 20;
-              pointerEvents = "auto";
-            } else if (offset === committees.length - 2) {
-              // Left 2
-              transform = "translateX(-480px) scale(0.7) rotateY(35deg)";
-              opacity = 0.4;
-              zIndex = 10;
-              pointerEvents = "auto";
+            if (isMobile) {
+              // Mobile: Only show center card
+              if (offset === 0) {
+                transform = "translateX(0) scale(1) rotateY(0deg)";
+                opacity = 1;
+                zIndex = 30;
+                pointerEvents = "auto";
+              }
+            } else {
+              // Desktop: Show 3D coverflow
+              if (offset === 0) {
+                // Center
+                transform = "translateX(0) scale(1) rotateY(0deg)";
+                opacity = 1;
+                zIndex = 30;
+                pointerEvents = "auto";
+              } else if (offset === 1) {
+                // Right 1
+                transform = "translateX(280px) scale(0.85) rotateY(-25deg)";
+                opacity = 0.7;
+                zIndex = 20;
+                pointerEvents = "auto";
+              } else if (offset === 2) {
+                // Right 2
+                transform = "translateX(480px) scale(0.7) rotateY(-35deg)";
+                opacity = 0.4;
+                zIndex = 10;
+                pointerEvents = "auto";
+              } else if (offset === committees.length - 1) {
+                // Left 1
+                transform = "translateX(-280px) scale(0.85) rotateY(25deg)";
+                opacity = 0.7;
+                zIndex = 20;
+                pointerEvents = "auto";
+              } else if (offset === committees.length - 2) {
+                // Left 2
+                transform = "translateX(-480px) scale(0.7) rotateY(35deg)";
+                opacity = 0.4;
+                zIndex = 10;
+                pointerEvents = "auto";
+              }
             }
 
             const isActive = offset === 0;
@@ -181,8 +207,8 @@ export function CommitteesCarousel() {
                 onClick={() => !isActive && goToSlide(idx)}
                 style={{
                   position: "absolute",
-                  width: "320px",
-                  height: "480px",
+                  width: cardWidth + "px",
+                  height: cardHeight + "px",
                   borderRadius: "16px",
                   overflow: "hidden",
                   backgroundColor: "#1a1a1a",
@@ -224,7 +250,7 @@ export function CommitteesCarousel() {
                     style={{
                       position: "absolute",
                       inset: 0,
-                      padding: "24px",
+                      padding: isMobile ? "20px" : "24px",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
@@ -238,7 +264,7 @@ export function CommitteesCarousel() {
                       <div style={{ textAlign: "right" }}>
                         <span
                           style={{
-                            fontSize: "12px",
+                            fontSize: isMobile ? "11px" : "12px",
                             fontWeight: 600,
                             letterSpacing: "0.1em",
                             color: "#fff",
@@ -254,7 +280,7 @@ export function CommitteesCarousel() {
                     <div style={{ textAlign: "center" }}>
                       <h2
                         style={{
-                          fontSize: "28px",
+                          fontSize: isMobile ? "24px" : "28px",
                           fontWeight: 900,
                           textTransform: "uppercase",
                           letterSpacing: "0.05em",
@@ -269,7 +295,7 @@ export function CommitteesCarousel() {
                       {committee.subtitle && (
                         <div
                           style={{
-                            fontSize: "18px",
+                            fontSize: isMobile ? "16px" : "18px",
                             fontWeight: 700,
                             textTransform: "uppercase",
                             letterSpacing: "0.08em",
@@ -292,10 +318,10 @@ export function CommitteesCarousel() {
                       />
                       <p
                         style={{
-                          fontSize: "14px",
+                          fontSize: isMobile ? "13px" : "14px",
                           fontStyle: "italic",
                           color: "rgba(255,255,255,0.95)",
-                          margin: "0 0 20px 0",
+                          margin: "0 0 16px 0",
                           lineHeight: 1.4,
                           textShadow: "0 2px 8px rgba(0,0,0,0.9)",
                         }}
@@ -304,11 +330,11 @@ export function CommitteesCarousel() {
                       </p>
                       <button
                         style={{
-                          padding: "10px 24px",
+                          padding: isMobile ? "9px 20px" : "10px 24px",
                           borderRadius: "999px",
                           background: "linear-gradient(135deg, #c5a880 0%, #a48256 100%)",
                           color: "#0a0a0a",
-                          fontSize: "11px",
+                          fontSize: isMobile ? "10px" : "11px",
                           fontWeight: 800,
                           letterSpacing: "0.15em",
                           textTransform: "uppercase",
@@ -336,14 +362,14 @@ export function CommitteesCarousel() {
           aria-label="Previous committee"
           style={{
             position: "absolute",
-            left: "20px",
+            left: isMobile ? "10px" : "20px",
             top: "50%",
             transform: "translateY(-50%)",
-            width: "48px",
-            height: "48px",
+            width: isMobile ? "40px" : "48px",
+            height: isMobile ? "40px" : "48px",
             borderRadius: "50%",
-            backgroundColor: "rgba(0,0,0,0.6)",
-            border: "1px solid rgba(255,255,255,0.2)",
+            backgroundColor: "rgba(0,0,0,0.7)",
+            border: "1px solid rgba(255,255,255,0.3)",
             color: "#fff",
             display: "flex",
             alignItems: "center",
@@ -352,14 +378,19 @@ export function CommitteesCarousel() {
             backdropFilter: "blur(10px)",
             transition: "all 200ms ease",
             zIndex: 40,
+            touchAction: "manipulation",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.8)";
-            e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
+            if (!isMobile) {
+              e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.8)";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
+            }
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.6)";
-            e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+            if (!isMobile) {
+              e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.7)";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+            }
           }}
         >
           <ChevronLeft />
@@ -370,14 +401,14 @@ export function CommitteesCarousel() {
           aria-label="Next committee"
           style={{
             position: "absolute",
-            right: "20px",
+            right: isMobile ? "10px" : "20px",
             top: "50%",
             transform: "translateY(-50%)",
-            width: "48px",
-            height: "48px",
+            width: isMobile ? "40px" : "48px",
+            height: isMobile ? "40px" : "48px",
             borderRadius: "50%",
-            backgroundColor: "rgba(0,0,0,0.6)",
-            border: "1px solid rgba(255,255,255,0.2)",
+            backgroundColor: "rgba(0,0,0,0.7)",
+            border: "1px solid rgba(255,255,255,0.3)",
             color: "#fff",
             display: "flex",
             alignItems: "center",
@@ -386,29 +417,34 @@ export function CommitteesCarousel() {
             backdropFilter: "blur(10px)",
             transition: "all 200ms ease",
             zIndex: 40,
+            touchAction: "manipulation",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.8)";
-            e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
+            if (!isMobile) {
+              e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.8)";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
+            }
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.6)";
-            e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+            if (!isMobile) {
+              e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.7)";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+            }
           }}
         >
           <ChevronRight />
         </button>
 
         {/* Dots */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? "8px" : "10px" }}>
           {committees.map((_, idx) => (
             <button
               key={idx}
               onClick={() => goToSlide(idx)}
               aria-label={`Go to committee ${idx + 1}`}
               style={{
-                height: "8px",
-                width: idx === currentIndex ? "32px" : "8px",
+                height: isMobile ? "6px" : "8px",
+                width: idx === currentIndex ? (isMobile ? "24px" : "32px") : (isMobile ? "6px" : "8px"),
                 borderRadius: "999px",
                 backgroundColor: idx === currentIndex ? "#c5a880" : "rgba(255,255,255,0.3)",
                 border: "none",
