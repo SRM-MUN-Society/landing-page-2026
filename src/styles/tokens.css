@@ -1,0 +1,169 @@
+/* ==========================================================================
+   SRMMUN 2026 — Design Tokens
+   Palette: paper white + black ink, brass accent.
+   --g-* is the committed ink ramp (kept as a token prefix so existing
+   class names continue to resolve). It is grayscale, not green.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------- INK RAMP */
+  --g-50:  #f5f5f5;
+  --g-100: #ececec;
+  --g-200: #d4d4d4;
+  --g-300: #a3a3a3;
+  --g-400: #737373;
+  --g-500: #525252;
+  --g-600: #3f3f3f;
+  --g-700: #262626;
+  --g-800: #171717;
+  --g-900: #0f0f0f;
+  --g-950: #0a0a0a;
+
+  /* -------------------------------------------------------------- NEUTRALS */
+  --n-0:   #ffffff;
+  --n-25:  #fdfdfc;
+  --n-50:  #f8f8f7;
+  --n-100: #f1f1ef;
+  --n-150: #e8e8e6;
+  --n-200: #ddddda;
+  --n-300: #c4c4bf;
+  --n-400: #9a9a95;
+  --n-500: #63635f;
+  --n-600: #545450;
+  --n-700: #3b3b3a;
+  --n-800: #262626;
+  --n-900: #141414;
+  --n-950: #0a0a0a;
+
+  /* ---------------------------------------------------------- ACCENT / MISC */
+  --brass:      #b08a3e;
+  --brass-deep: #806128;
+  --navy:       #16314a;
+  --paper:      #faf7f0;
+  --paper-line: #e6ded0;
+  --red-seal:   #9b2c2c;
+
+  /* ---------------------------------------------------------------- ROLES */
+  --bg:            var(--n-25);
+  --bg-alt:        var(--n-50);
+  --bg-sunk:       var(--n-100);
+  --bg-invert:     var(--g-950);
+  --ink:           var(--n-900);
+  --ink-soft:      var(--n-600);
+  --ink-mute:      var(--n-500);
+  --ink-invert:    #f3f3f3;
+  --accent:        var(--g-800);
+  --accent-deep:   var(--g-950);
+  --accent-bright: var(--g-300);
+  --line:          var(--n-200);
+  --line-soft:     var(--n-150);
+  --line-strong:   var(--n-300);
+
+  /* --------------------------------------------------------------- GLASS */
+  --glass-bg:        rgba(255, 255, 255, 0.58);
+  --glass-bg-strong: rgba(255, 255, 255, 0.78);
+  --glass-bg-thin:   rgba(255, 255, 255, 0.4);
+  --glass-tint:      rgba(0, 0, 0, 0.04);
+  --glass-blur:      18px;
+  --glass-blur-lg:   32px;
+  --glass-sat:       1.15;
+  --glass-hi:        rgba(255, 255, 255, 0.9);
+  --glass-lo:        rgba(20, 20, 20, 0.06);
+  --glass-edge-a:    rgba(255, 255, 255, 0.95);
+  --glass-edge-b:    rgba(0, 0, 0, 0.18);
+  --glass-edge-c:    rgba(20, 20, 20, 0.08);
+
+  /* ----------------------------------------------------- SHADOW LADDER (6) */
+  --sh-1: 0 1px 2px rgba(20,20,20,.045), 0 1px 1px rgba(20,20,20,.035);
+  --sh-2: 0 2px 4px rgba(20,20,20,.04), 0 4px 8px rgba(20,20,20,.045);
+  --sh-3: 0 4px 8px rgba(20,20,20,.04), 0 10px 20px rgba(20,20,20,.055);
+  --sh-4: 0 8px 16px rgba(20,20,20,.045), 0 20px 40px rgba(20,20,20,.07);
+  --sh-5: 0 16px 32px rgba(20,20,20,.05), 0 36px 72px rgba(20,20,20,.085);
+  --sh-6: 0 28px 56px rgba(20,20,20,.06), 0 64px 128px rgba(20,20,20,.11);
+  --sh-green: 0 18px 44px rgba(0,0,0,.16), 0 4px 12px rgba(0,0,0,.1);
+  --sh-paper: 0 1px 1px rgba(20,20,20,.06), 0 8px 18px rgba(20,20,20,.07),
+              0 22px 44px rgba(20,20,20,.05);
+
+  /* ------------------------------------------------------------ TYPOGRAPHY */
+  --font-display: 'Instrument Serif', 'Times New Roman', Times, 'Liberation Serif', serif;
+  --font-serif:   'Newsreader', 'Times New Roman', Times, 'Liberation Serif', serif;
+  --font-ui:      'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+  --font-doc:     'Times New Roman', Times, serif;
+
+  --t-2xs: clamp(0.68rem, 0.66rem + 0.10vw, 0.74rem);
+  --t-xs:  clamp(0.76rem, 0.73rem + 0.14vw, 0.84rem);
+  --t-sm:  clamp(0.86rem, 0.82rem + 0.18vw, 0.95rem);
+  --t-md:  clamp(1.00rem, 0.95rem + 0.24vw, 1.13rem);
+  --t-lg:  clamp(1.16rem, 1.08rem + 0.38vw, 1.38rem);
+  --t-xl:  clamp(1.36rem, 1.22rem + 0.64vw, 1.75rem);
+  --t-2xl: clamp(1.62rem, 1.38rem + 1.06vw, 2.30rem);
+  --t-3xl: clamp(1.94rem, 1.54rem + 1.78vw, 3.05rem);
+  --t-4xl: clamp(2.34rem, 1.70rem + 2.86vw, 4.05rem);
+  --t-5xl: clamp(2.80rem, 1.80rem + 4.45vw, 5.40rem);
+  --t-6xl: clamp(3.30rem, 1.75rem + 6.90vw, 7.20rem);
+  --t-7xl: clamp(3.80rem, 1.35rem + 10.9vw, 9.80rem);
+  --t-8xl: clamp(4.20rem, 0.40rem + 16.9vw, 13.5rem);
+
+  --lh-tight: 0.94;
+  --lh-snug:  1.12;
+  --lh-base:  1.62;
+  --lh-loose: 1.78;
+  --tr-tight: -0.022em;
+  --tr-snug:  -0.012em;
+  --tr-wide:  0.04em;
+  --tr-caps:  0.16em;
+
+  /* ---------------------------------------------------------------- SPACE */
+  --s-1: 0.25rem;  --s-2: 0.5rem;   --s-3: 0.75rem;  --s-4: 1rem;
+  --s-5: 1.5rem;   --s-6: 2rem;     --s-7: 2.5rem;   --s-8: 3rem;
+  --s-9: 4rem;     --s-10: 5rem;    --s-11: 6.5rem;  --s-12: 8rem;
+  --s-13: 10rem;   --s-14: 13rem;
+  --gutter: clamp(1.15rem, 0.6rem + 2.6vw, 3.5rem);
+  --section-y: clamp(4.5rem, 2.5rem + 8vw, 11rem);
+  --maxw: 82rem;
+  --maxw-wide: 96rem;
+  --maxw-text: 40rem;
+
+  /* --------------------------------------------------------------- RADII */
+  --r-xs: 4px;  --r-sm: 8px;  --r-md: 14px; --r-lg: 22px;
+  --r-xl: 32px; --r-2xl: 44px; --r-pill: 999px;
+
+  /* -------------------------------------------------------------- MOTION */
+  --d-xs: 140ms; --d-sm: 260ms; --d-md: 440ms;
+  --d-lg: 720ms; --d-xl: 1100ms; --d-2xl: 1600ms;
+  --e-silk:  cubic-bezier(0.16, 1, 0.30, 1);
+  --e-swift: cubic-bezier(0.22, 1, 0.36, 1);
+  --e-out:   cubic-bezier(0.33, 1, 0.68, 1);
+  --e-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --e-drape: cubic-bezier(0.34, 1.16, 0.64, 1);
+  --e-gavel: cubic-bezier(0.5, 0, 0.15, 1.4);
+
+  /* ------------------------------------------------------------- Z-INDEX */
+  --z-base: 1;   --z-raise: 10;  --z-sticky: 100;
+  --z-header: 400; --z-drawer: 600; --z-curtain: 800; --z-loader: 900;
+  --z-cursor: 1000;
+
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.is-invert {
+  --bg: var(--g-950);
+  --bg-alt: #141414;
+  --bg-sunk: #0d0d0d;
+  --ink: #f3f3f3;
+  --ink-soft: #c4c4c4;
+  --ink-mute: #8e8e8e;
+  --accent: var(--g-300);
+  --accent-deep: var(--g-200);
+  --line: rgba(243, 243, 243, 0.14);
+  --line-soft: rgba(243, 243, 243, 0.08);
+  --line-strong: rgba(243, 243, 243, 0.24);
+  --glass-bg: rgba(243, 243, 243, 0.07);
+  --glass-bg-strong: rgba(243, 243, 243, 0.11);
+  --glass-hi: rgba(255, 255, 255, 0.22);
+  --glass-edge-a: rgba(255, 255, 255, 0.3);
+  --glass-edge-b: rgba(180, 180, 180, 0.35);
+  --glass-edge-c: rgba(0, 0, 0, 0.3);
+  color-scheme: dark;
+}
