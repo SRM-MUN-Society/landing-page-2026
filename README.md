@@ -207,45 +207,10 @@ npm run start        # Start production server
 npm run lint         # Run ESLint
 ```
 
-## 🎯 Key Features
-
-### Animation System
-- GSAP-powered animations
-- ScrollTrigger-based scroll animations
-- Magnetic button effects
-- Reveal animations on scroll
-- Smooth page transitions
-
-### Illustrations
-- Custom SVG illustrations generated via TypeScript
-- Colonnade mark (MUN Society logo)
-- Clock tower
-- Various thematic icons (gavel, badge, placard, etc.)
-
-### Header System
-- Auto-detects dark/light backgrounds
-- Switches logo color based on page background
-- Sticky navigation with scroll progress
-- Mobile-responsive drawer navigation
-
-## 🤝 Secretariat Contact
-
-- **Secretary General**: Meeraja S (+91 9500072995)
-- **Deputy Secretary General**: Sahana Parameswaran (+91 7338702651)
-- **Delegation Email**: delegateaffairs.srmmun@gmail.com
-- **General Email**: srmmunsociety26@gmail.com
-- **Instagram**: [@srm_munsoc](https://www.instagram.com/srm_munsoc/)
-
-## 🏛️ Collaborations
-
-SRMMUN 2026 is recognized by:
-- United Nations Academic Impact (UNAI)
-- Sustainable Development Solutions Network (SDSN)
-
 ## 📄 License
 
 © 2026 SRM MUN Society. All rights reserved.
 
 ---
 
-Built with ❤️ by the SRM MUN Society Organising Committee for the 14th Edition.
+Built with ❤️ by Abhiraj & Sajith for the 14th Edition.
