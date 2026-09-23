@@ -15,8 +15,16 @@ export const metadata: Metadata = {
   title: 'SRM MUN 2026 — 14th Edition',
   description: 'SRM MUN 2026, the 14th Edition. 30, 31 October and 1 November 2026 at SRM Institute of Science and Technology, Kattankulathur, Chennai. 3 days. Be a part of the legacy.',
   icons: {
-    icon: '/img/opt/symbol-black.png',
+    icon: [
+      { url: '/favicons/favicon.ico', sizes: 'any' },
+      { url: '/favicons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/favicons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
+  manifest: '/favicons/site.webmanifest',
   openGraph: {
     title: 'SRM MUN 2026 — 14th Edition',
     description: '3 days. 30, 31 October and 1 November 2026, SRMIST Kattankulathur.',
@@ -26,7 +34,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#fdfdfc',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fdfdfc' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+  ],
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
