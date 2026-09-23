@@ -4,48 +4,70 @@ export interface Committee {
   subtitle: string;
   description: string;
   image: string;
-  tag?: string;
 }
 
 export const committees: Committee[] = [
   {
+    id: "unga",
+    title: "UNGA",
+    subtitle: "United Nations General Assembly",
+    description: "Agenda: Hiroshima Process 2.0",
+    image: "/comms/unga.jpg",
+  },
+  {
     id: "unhrc",
-    title: "HUMAN RIGHTS",
-    subtitle: "COUNCIL",
-    description: "Champion human rights protection and address violations globally.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=1000&fit=crop&q=80",
-    tag: "#UNHRC",
-  },
-  {
-    id: "who",
-    title: "WORLD HEALTH",
-    subtitle: "ORGANIZATION",
-    description: "Develop global health policies and coordinate emergency responses.",
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&h=1000&fit=crop&q=80",
-    tag: "#WHO",
-  },
-  {
-    id: "unep",
-    title: "ENVIRONMENT",
-    subtitle: "PROGRAMME",
-    description: "Address environmental challenges and promote sustainable development.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=1000&fit=crop&q=80",
-    tag: "#UNEP",
+    title: "UNHRC",
+    subtitle: "United Nations Human Rights Council",
+    description: "Agenda: TBD",
+    image: "/comms/unhrc.jpeg",
   },
   {
     id: "unsc",
-    title: "SECURITY",
-    subtitle: "COUNCIL",
-    description: "Maintain international peace and security through collective action.",
-    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&h=1000&fit=crop&q=80",
-    tag: "#UNSC",
+    title: "UNSC",
+    subtitle: "United Nations Security Council",
+    description: "Agenda: TBD",
+    image: "/comms/unsc.jpeg",
   },
   {
-    id: "unga",
-    title: "GENERAL",
-    subtitle: "ASSEMBLY",
-    description: "Deliberate on pressing international issues and global cooperation.",
-    image: "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&h=1000&fit=crop&q=80",
-    tag: "#UNGA",
+    id: "ecosoc",
+    title: "ECOSOC",
+    subtitle: "Economic and Social Council",
+    description: "Agenda: TBD",
+    image: "/comms/ecosoc.jpeg",
+  },
+  {
+    id: "aippm",
+    title: "AIPPM",
+    subtitle: "All India Political Parties Meet",
+    description: "Agenda: TBD",
+    image: "/comms/aippm.jpeg",
+  },
+  {
+    id: "tnsm",
+    title: "TNSM",
+    subtitle: "Tamil Nadu Stakeholders' Meet",
+    description: "Agenda: TBD",
+    image: "/comms/tnsm.jpg",
+  },
+  {
+    id: "oau",
+    title: "OAU",
+    subtitle: "Organisation of African Unity",
+    description: "Agenda: TBD",
+    image: "/comms/oau.jpeg",
+  },
+  {
+    id: "ipj",
+    title: "IPJ",
+    subtitle: "International Press Journalism",
+    description: "Agenda: TBD",
+    image: "/comms/ipj.jpeg",
+  },
+  {
+    id: "ipp",
+    title: "IPP",
+    subtitle: "International Press Photojournalism",
+    description: "Agenda: TBD",
+    image: "/comms/ipp.jpeg",
   },
 ];

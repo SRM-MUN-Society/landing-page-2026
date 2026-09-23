@@ -253,30 +253,13 @@ export function CommitteesCarousel() {
                       padding: isMobile ? "20px" : "24px",
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "space-between",
+                      justifyContent: "flex-end",
                       opacity: isActive ? 1 : 0,
                       transform: isActive ? "translateY(0)" : "translateY(20px)",
                       transition: "all 500ms ease",
                     }}
                   >
-                    {/* Tag */}
-                    {committee.tag && (
-                      <div style={{ textAlign: "right" }}>
-                        <span
-                          style={{
-                            fontSize: isMobile ? "11px" : "12px",
-                            fontWeight: 600,
-                            letterSpacing: "0.1em",
-                            color: "#fff",
-                            textShadow: "0 2px 8px rgba(0,0,0,0.9)",
-                          }}
-                        >
-                          {committee.tag}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Bottom Content */}
+                    {/* Content */}
                     <div style={{ textAlign: "center" }}>
                       <h2
                         style={{
@@ -295,10 +278,9 @@ export function CommitteesCarousel() {
                       {committee.subtitle && (
                         <div
                           style={{
-                            fontSize: isMobile ? "16px" : "18px",
-                            fontWeight: 700,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.08em",
+                            fontSize: isMobile ? "14px" : "16px",
+                            fontWeight: 600,
+                            letterSpacing: "0.02em",
                             color: "#f0f0f0",
                             marginBottom: "8px",
                             textShadow: "0 3px 10px rgba(0,0,0,0.9)",
