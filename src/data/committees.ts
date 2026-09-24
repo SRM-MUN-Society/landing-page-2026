@@ -11,14 +11,14 @@ export const committees: Committee[] = [
     id: "unga",
     title: "UNGA",
     subtitle: "United Nations General Assembly",
-    description: "Agenda: Hiroshima Process 2.0",
+    description: "Agenda: Hiroshima Process 2.0 : The Future of International Security 2036",
     image: "/comms/unga.jpg",
   },
   {
     id: "unhrc",
     title: "UNHRC",
     subtitle: "United Nations Human Rights Council",
-    description: "Agenda: Universal Periodic Review of the Democratic Republic of the Congo and the People’s Republic of China",
+    description: "Agenda: Universal Periodic Review of Afghanistan and Yemen",
     image: "/comms/unhrc.jpeg",
   },
   {
